@@ -20,14 +20,14 @@ namespace TodoApi.Controllers
         [HttpPost]
         public ActionResult<Customer> CreateCustomer([FromForm]Customer customer)
         {
-            AddCustomer(customer);
 
-            if (Name == null)
+         if (customer.Name == null)
             {
                 return BadRequest(customer);
             }
             else
             {
+                AddCustomer(customer);
                 return Ok(customer);
             }
         }
