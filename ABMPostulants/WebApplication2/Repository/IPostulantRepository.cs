@@ -8,7 +8,7 @@ namespace WebApplication2.Repository
 {
     public interface IPostulantRepository
     {
-        void Insert(Postulant postulant);
+        void Insert(Postulant postulant);  
         Postulant GetPostulant(int id);
         IEnumerable<Postulant> GetPostulantAll();
         void Delete(int id);

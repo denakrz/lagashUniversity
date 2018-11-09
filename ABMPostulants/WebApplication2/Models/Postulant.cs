@@ -19,7 +19,7 @@ namespace WebApplication2.Models
         
 
         [Required]
-        public Country Country { get; set; }
+        public Country Country { get; set; }  // Se obtiene desde el objeto Country.
 
     }
 }

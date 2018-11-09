@@ -20,7 +20,7 @@ namespace WebApplication2.Repository
             {
                 conn.Open();
                 Postulant postulant = conn
-                    .Query<Postulant, Country, Postulant>(sql, param: new { Id = id }, map: GetCountry, splitOn: "IdCountry")
+                    .Query<Postulant, Country, Postulant>(sql, param: new { Id = id }, map: GetCountry, splitOn: "IdCountry") // Mapea relaciones entre Sql
                     .FirstOrDefault();
                 conn.Close();
 
@@ -43,9 +43,10 @@ namespace WebApplication2.Repository
         }
 
         // RETORNA TABLA //
+
         public IEnumerable<Postulant> GetPostulantAll()
             {
-                var sql = "select * from Postulant u inner join Country c on c.IdCountry = u.IdCountry";
+                var sql = "select * from Postulant u inner join Country c on c.IdCountry = u.IdCountry"; // Selecciona ambas tablas
 
                 using (var conn = new SqlConnection(connStr))
                 {
@@ -68,7 +69,7 @@ namespace WebApplication2.Repository
                 using (var conn = new SqlConnection(connStr))
                 {
                     conn.Open();
-                    conn.Execute(sql, new { @Name = postulant.Name, @Age = postulant.Age, @IdCountry = postulant.Country.IdCountry });
+                    conn.Execute(sql, new { @Name = postulant.Name, @Age = postulant.Age, @IdCountry = postulant.Country.IdCountry }); // Creo nuevo obj para relacionar los valores
                     conn.Close();
                 }
             }

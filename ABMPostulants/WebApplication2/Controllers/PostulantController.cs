@@ -25,6 +25,8 @@ namespace WebApplication2.Controllers
             return repository.GetPostulant(id);
         }
 
+        // Obtener lista
+
         [HttpGet]
         [Route("/api/Postulant/")]
         public IEnumerable<Postulant> Get()
@@ -36,24 +38,38 @@ namespace WebApplication2.Controllers
         [Route("/api/Postulant/")]
         public ActionResult Post([FromBody] Postulant postulant)
         {
-            if (ModelState.IsValid && (postulant.Name.IndexOf(" ") != -1)) // Para saber si hay un espacio en el nombre
+            if (ModelState.IsValid && (postulant.Name.IndexOf(" ") != -1)) // Si hay un espacio en el nombre (nombre + apellido) lo agrega
             {
                 repository.Insert(postulant);
             }
             else
             {
-                return NotFound();
+                return NotFound(); // Si no, devuelve 404.
             }
             return Ok();
         }
 
+        // En el Put puedo poner nombres sin espacios, la validación me arroja un error CS0029 por la ID (es int), ¿tengo que convertir todo a string?
+
         [HttpPut]
         [Route("/api/Postulant/")]
-        public Postulant Put([FromBody] Postulant postulant)
+        public ActionResult Put([FromBody] Postulant postulant)
         {
+            if (ModelState.IsValid && (postulant.Name.IndexOf(" ") != -1))
+            {
+                repository.Update(postulant);
+            }
+            else
+            {
+                return NotFound();
+            }
 
-            return repository.Update(postulant);
+            return Ok();
+
         }
+        
+
+        // Eliminar un registro por ID
 
         [HttpDelete]
         [Route("/api/Postulant/{id}")]
@@ -61,6 +77,8 @@ namespace WebApplication2.Controllers
         {
             repository.Delete(id);
         }
+
+        // Ejemplo GET Login (implementar en proyecto).
 
         [HttpGet]
         [Route("/api/Login")]
