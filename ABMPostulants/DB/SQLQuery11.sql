@@ -1,0 +1,1 @@
+exec sp_executesql N'select * from Postulant u inner join Country c on c.IdCountry = u.IdCountry where Id = 7'
