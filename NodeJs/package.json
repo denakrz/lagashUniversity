@@ -1,0 +1,16 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "udieuroewi",
+  "main": "node.js",
+  "dependencies": {
+    "express": "^4.16.4",
+    "save": "^2.3.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dena",
+  "license": "ISC"
+}
